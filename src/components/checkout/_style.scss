@@ -1,0 +1,78 @@
+.modal-header {
+    .modal-title {
+        color: #873600;
+    }
+}
+
+.modal-body {
+    .btn-link {
+        color: #873600;
+
+        &:hover {
+            color: #6E2C00;
+        }
+
+        &:focus,
+        &.focus {
+            box-shadow: 1px 2px #6E2C00;
+        }
+    }
+
+    .icon {
+        border-radius: 5px;
+
+        svg {
+            width: 50px;
+        }
+
+        span {
+            font-size: 30px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+    }
+
+    .checkout-cheese {
+        background-color: #E1E07B;
+        border: 2px solid #D0CF75;
+    }
+
+    .checkout-lettuce {
+        background-color: #9EE390;
+        border: 2px solid #82C474;
+    }
+
+    .checkout-meat {
+        background-color: #f9906f;
+        border: 2px solid #CD5C5C;
+    }
+
+    .checkout-beefBacon {
+        background-color: #F08080;
+        border: 2px solid #CD5C5C;
+    }
+
+    .checkout-total {
+        background-color: #24a8db;
+        border: 2px solid #1c8bb6;
+    }
+}
+
+
+
+
+.my-modal {
+    .modal-content {
+        width: 580px;
+        height: 470px;
+    }
+
+    .title {
+        line-height: 1.15;
+    }
+}
+
+.modal {
+    padding: 0px !important;
+    margin: 0px !important;
+}

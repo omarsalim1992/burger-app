@@ -1,0 +1,55 @@
+.menu {
+  position: relative;
+  border-style: outset;
+
+  .ingredient-dev {
+    .add-ons {
+      margin-top: 20px;
+
+      svg {
+        width: 30px;
+      }
+
+      .minus-icon {
+        svg {
+          margin-top: 5px;
+        }
+      }
+    }
+    
+    .ingredient {
+      position: relative;
+
+      .price {
+        position: absolute;
+        border-radius: 50%;
+        background-color: #DA1C1C;
+        width: 30px;
+        font-size: 15px;
+        right: 5px;
+        top: 12px;
+      }
+
+
+    }
+  }
+
+
+  .order-now {
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+    right: 15px;
+
+    .icon {
+      svg {
+        width: 20%;
+      }
+    }
+
+    .text {
+      font-size: 30px;
+      vertical-align: middle;
+    }
+  }
+}

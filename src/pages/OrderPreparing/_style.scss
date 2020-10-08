@@ -1,0 +1,38 @@
+.order-preparing {
+    margin-top: 100px;
+
+    .chef {
+        svg {
+
+            width: 200px;
+            height: auto;
+        }
+    }
+
+    .text {
+        font-size: 20px;
+        font-weight: 600;
+        vertical-align: middle;
+
+        .time {
+            color: #873600;
+            font-size: 60px;
+        }
+    }
+
+    .go-home {
+        text-decoration: none;
+
+        .icon {
+            svg {
+                width: 20%;
+            }
+        }
+
+        .text {
+            font-size: 30px;
+            vertical-align: middle;
+            text-decoration: none;
+        }
+    }
+}
