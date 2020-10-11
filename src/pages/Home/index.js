@@ -43,7 +43,7 @@ const Home = () => {
         setShowModal={setShowModal}
         ingredients={ingredients}
       />
-      <div className="home container my-5">
+      <div className="home container my-5 react-redux-branch">
         <div className="row">
           <Burger
             ingredientsOrder={ingredientsOrder}
