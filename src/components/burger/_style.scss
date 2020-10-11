@@ -105,14 +105,14 @@
     }
 
     .cheese::after {
-        content: "            ▾";
+        content: "         ▾";
         white-space: pre;
         font-size: 130px;
-        line-height: 45px;
+        line-height: 60px;
         color: #d6bb22;
         display: block;
         width: 300px;
-        height: 60px;
+        height: 70px;
     }
 
     .meat {
