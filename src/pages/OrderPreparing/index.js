@@ -7,7 +7,6 @@ import Constants from '../../constants';
 
 const OrderPreparing = (props) => {
     const { pagePath } = Constants;
-    console.log("props.latestOrder::", props.latestOrder);
     const { latestOrder = {} } = props;
     const { pickupTime = "", orderId = "" } = latestOrder;
     return (
