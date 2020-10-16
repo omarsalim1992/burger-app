@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
@@ -13,16 +13,14 @@ import './styles.scss';
 const { pagePath } = Constants;
 
 ReactDOM.render(
-  <StrictMode>
-    <Router>
-      <Header />
-      <Switch>
-        <Route path={pagePath.HOME} exact component={Home} />
-        <Route path={pagePath.ORDER_PREPARING} exact component={OrderPreparing} />
-        <Route component={NotFound404} />
-      </Switch>
-    </Router>
-  </StrictMode>,
+  <Router>
+    <Header />
+    <Switch>
+      <Route path={pagePath.HOME} exact component={Home} />
+      <Route path={pagePath.ORDER_PREPARING} exact component={OrderPreparing} />
+      <Route component={NotFound404} />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 
