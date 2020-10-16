@@ -11,9 +11,9 @@ export default ({
                 </div>
             </div>
             <div className="row">
-                {allOrders.map(order => {
+                {allOrders.map((order, index) => {
                     return (
-                        <div className="col-3 individual-order text-center mr-1">
+                        <div key={order.orderId + index} className="col-3 individual-order text-center mr-1">
                             {order.orderId} - {order.pickupTime}
                         </div>
                     );
