@@ -1,5 +1,5 @@
-import * as actionTypes from './types';
 import axios from 'axios';
+import * as actionTypes from './types';
 import { microServiceApi } from '../config';
 
 const generateConfig = () => {
@@ -16,7 +16,6 @@ export const createOrder = (payload = {}) => {
     return (dispatch) => {
         dispatch({ type: actionTypes.START_LOADING });
         return axios.post(microServiceApi.url, payload, config).then(res => {
-            console.log("resssssss::", res);
             const { data = {} } = res;
             const { responseData = {} } = data;
             dispatch({
@@ -39,14 +38,13 @@ export const getAllOrders = () => {
         return axios.get(microServiceApi.url, config).then(res => {
             const { data = {} } = res;
             const { responseData = {} } = data;
-            console.log("responseData::", responseData);
             dispatch({
                 type: actionTypes.GET_ALL_ORDER_DEDAILS,
                 data: responseData
             });
             dispatch({ type: actionTypes.FINISH_LOADING });
         }).catch(err => {
-            console.log("POST-REQ::error::", err);
+            console.log("GET-REQ::error::", err);
             dispatch({ type: actionTypes.FINISH_LOADING });
         });
     };

@@ -9,4 +9,4 @@ export const microServiceApi = {
     headers: {
         Authorization: "Bearer dummy_token"
     }
-}
+};

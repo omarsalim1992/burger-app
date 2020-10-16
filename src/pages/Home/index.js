@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Burger from '../../components/burger';
 import Builder from '../../components/builder';
 import Checkout from '../../components/checkout';
+import OrderList from '../../components/orderList';
 import navigateTo from '../../helper/navigateTo';
 import Constants from '../../constants/index';
 import {
@@ -42,11 +43,8 @@ const Home = (props = {}) => {
     }
     setIngredientsOrder(newIngredientsOrder);
   };
-
-  console.log("props.orders::", props.orders);
-
+  
   const OnOrderConfirm = () => {
-    console.log("OnOrderConfirm::", OnOrderConfirm);
     const payload = {
       payment: "RM21.4",
       burger: {
@@ -58,16 +56,15 @@ const Home = (props = {}) => {
     };
     createOrder(payload).then(res => {
       const { pagePath } = Constants;
-      console.log("res::", res);
       if (res && res.status === 'success') {
-        console.log("sdsdfd")
         navigateTo(pagePath.ORDER_PREPARING)
       };
-      // console.log("pagePath.ORDER_PREPARING::", pagePath.ORDER_PREPARING);
     });
   };
+  const {allOrders = []} = props;
   return (
     <>
+      <OrderList allOrders={allOrders} />
       <Checkout
         showModal={showModal}
         setShowModal={setShowModal}
@@ -92,7 +89,7 @@ const Home = (props = {}) => {
 };
 const mapStateToProps = (state = {}) => {
   return {
-    orders: state.orders || []
+    allOrders: (state && state.orders && state.orders.all) || []
   }
 };
 const mapDispatchToProps = (dispatch) => {
