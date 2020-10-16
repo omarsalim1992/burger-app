@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { CheeseIcon, LettuceIcon, BeefBaconIcon, MeatIcon } from '../../assets/images/index';
 import CheckoutIngredient from './subComponents/checkoutIngredient';
 import Constants from '../../constants/index';
-import { Link } from 'react-router-dom';
+
 const burgerCostCalculator = (ingredients = {}) => {
     const { ingredientPrices, ingredientsType } = Constants;
     return (ingredients[ingredientsType.CHEESE] * ingredientPrices.CHEESE) +
@@ -15,9 +15,10 @@ const burgerCostCalculator = (ingredients = {}) => {
 export default ({
     showModal,
     setShowModal,
-    ingredients
+    ingredients,
+    OnOrderConfirm
 }) => {
-    const { ingredientPrices, ingredientsType, pagePath } = Constants;
+    const { ingredientPrices, ingredientsType } = Constants;
     return (
         <Modal show={showModal} onHide={() => setShowModal(false)} className='my-modal' centered>
             <Modal.Header closeButton>
@@ -71,9 +72,7 @@ export default ({
                     type="button"
                     className="btn btn-secondary"
                     onClick={() => { setShowModal(false) }}>Cancel</button>
-                <Link to={pagePath.ORDER_PREPARING}>
-                    <button type="button" className="btn btn-warning">Confirm</button>
-                </Link>
+                <button onClick={OnOrderConfirm} type="button" className="btn btn-warning">Confirm</button>
             </Modal.Footer>
         </Modal>
     );

@@ -1,22 +1,39 @@
-// import * as actionTypes from '../actions/types';
-import {sessionStorageKeys} from '../config';
+import * as actionTypes from '../actions/types';
+import { sessionStorageKeys } from '../config';
 
 const initState = () => {
-    if(sessionStorage.getItem(sessionStorageKeys.order)) {
-        return {...JSON.parse(sessionStorage.getItem(sessionStorageKeys.order))};
+    if (sessionStorage.getItem(sessionStorageKeys.orders)) {
+        return { ...JSON.parse(sessionStorage.getItem(sessionStorageKeys.orders)) };
     }
     return {};
 };
 
-const setOrder = () => {
-    const order = {
-        orderID: 'fdfdfd',
-        time: '10:30'
-    }
-    sessionStorage.setItem(sessionStorageKeys.order, JSON.stringify(order));
-    return order;
+const setLatestOrder = (state, responseData) => {
+    const updatedOrders = {
+        ...state,
+        latest: { ...responseData }
+    };
+    sessionStorage.setItem(sessionStorageKeys.orders, JSON.stringify(updatedOrders));
+    return updatedOrders;
 }
 
+const storeAllOrders = (state, responseData) => {
+    const updatedOrders = {
+        ...state,
+        all: responseData && responseData.length ? responseData : []
+    }
+    sessionStorage.setItem(sessionStorageKeys.orders, JSON.stringify(updatedOrders));
+    return updatedOrders;
+};
+
 export default (state = initState(), action) => {
-    return setOrder();
+    const { data = {} } = action;
+    switch (action.type) {
+        case actionTypes.SET_ORDER_DEDAILS:
+            return setLatestOrder(state, data);
+        case actionTypes.GET_ALL_ORDER_DEDAILS:
+            return storeAllOrders(state, data);
+        default:
+            return state;
+    };
 };

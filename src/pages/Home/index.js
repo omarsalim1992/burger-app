@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Burger from '../../components/burger';
 import Builder from '../../components/builder';
 import Checkout from '../../components/checkout';
-const Home = () => {
+import navigateTo from '../../helper/navigateTo';
+import Constants from '../../constants/index';
+import {
+  getAllOrders,
+  createOrder
+} from '../../store/actions';
+
+const Home = (props = {}) => {
   const [ingredients, setIngredients] = useState({
     cheese: 0,
     lettuce: 0,
@@ -11,7 +19,10 @@ const Home = () => {
   });
   const [ingredientsOrder, setIngredientsOrder] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
+  const { createOrder, getAllOrders } = props;
+  useEffect(() => {
+    getAllOrders();
+  }, [createOrder, getAllOrders]);
   const onChangeBurgerIngredients = (type, isMore) => {
 
     const newIngredients = {
@@ -32,16 +43,36 @@ const Home = () => {
     setIngredientsOrder(newIngredientsOrder);
   };
 
-  // const handleModal = (isShowModal) => {
-  //   setShowModal(isShowModal);
-  // };
+  console.log("props.orders::", props.orders);
 
+  const OnOrderConfirm = () => {
+    console.log("OnOrderConfirm::", OnOrderConfirm);
+    const payload = {
+      payment: "RM21.4",
+      burger: {
+        cheese: 2,
+        lettuce: 3,
+        beefBacon: 2,
+        meat: 1
+      }
+    };
+    createOrder(payload).then(res => {
+      const { pagePath } = Constants;
+      console.log("res::", res);
+      if (res && res.status === 'success') {
+        console.log("sdsdfd")
+        navigateTo(pagePath.ORDER_PREPARING)
+      };
+      // console.log("pagePath.ORDER_PREPARING::", pagePath.ORDER_PREPARING);
+    });
+  };
   return (
     <>
       <Checkout
         showModal={showModal}
         setShowModal={setShowModal}
         ingredients={ingredients}
+        OnOrderConfirm={OnOrderConfirm}
       />
       <div className="home container my-5">
         <div className="row">
@@ -55,13 +86,23 @@ const Home = () => {
           />
         </div>
       </div>
-    
+
     </>
   );
 };
-
-export default Home;
-
+const mapStateToProps = (state = {}) => {
+  return {
+    orders: state.orders || []
+  }
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllOrders: () => dispatch(getAllOrders()),
+    createOrder: (payload) => dispatch(createOrder(payload))
+  }
+};
+// export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 // https://codepen.io/honeybadger126/pen/KBXzpq
 // https://placeit.net/c/design-templates/stages/youtube-banner-maker-for-food-channels-399?checkboxText_T2=true&checkboxText_T4=true&textText_T4=order%20now&pos-size_T1=0.3067_0.4668_0.1226_0.0616_d&pos-size_T2=0.5629_0.4668_0.1303_0.0616_d&pos-size_T3=0.8469_0.4810_0.1129_0.0355_d&textText_T3=&checkboxText_T3=false&textText_T2=Builder%20&checkboxText_T1=true&textText_T1=Burgers&colorFolder_Background=%23b5b5b5
 
