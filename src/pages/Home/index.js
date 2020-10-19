@@ -31,11 +31,7 @@ const Home = () => {
     }
     setIngredientsOrder(newIngredientsOrder);
   };
-
-  // const handleModal = (isShowModal) => {
-  //   setShowModal(isShowModal);
-  // };
-
+  
   return (
     <>
       <Checkout
