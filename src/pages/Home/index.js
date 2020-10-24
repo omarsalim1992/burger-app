@@ -23,7 +23,7 @@ const Home = (props = {}) => {
   const { createOrder, getAllOrders } = props;
   useEffect(() => {
     getAllOrders();
-  }, [createOrder, getAllOrders]);
+  }, [getAllOrders]);
   const onChangeBurgerIngredients = (type, isMore) => {
 
     const newIngredients = {
@@ -43,7 +43,7 @@ const Home = (props = {}) => {
     }
     setIngredientsOrder(newIngredientsOrder);
   };
-  
+
   const OnOrderConfirm = () => {
     const payload = {
       payment: "RM21.4",
@@ -61,7 +61,7 @@ const Home = (props = {}) => {
       };
     });
   };
-  const {allOrders = []} = props;
+  const { allOrders = [] } = props;
   return (
     <>
       <OrderList allOrders={allOrders} />
