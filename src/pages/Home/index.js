@@ -29,7 +29,11 @@ const Home = (props = {}) => {
     const newIngredients = {
       ...ingredients
     };
-    isMore ? ++newIngredients[type] : --newIngredients[type];
+    if (isMore) {
+      ++newIngredients[type]
+    } else if (!isMore && newIngredients[type]) {
+      --newIngredients[type]
+    }
     setIngredients(newIngredients);
 
     const lastIndexOfIngre = ingredientsOrder.lastIndexOf(type);
