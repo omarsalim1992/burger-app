@@ -30,9 +30,9 @@ const Home = (props = {}) => {
       ...ingredients
     };
     if (isMore) {
-      ++newIngredients[type]
+      ++newIngredients[type];
     } else if (!isMore && newIngredients[type]) {
-      --newIngredients[type]
+      --newIngredients[type];
     }
     setIngredients(newIngredients);
 
@@ -82,7 +82,7 @@ const Home = (props = {}) => {
           />
           <Builder
             onChangeBurgerIngredients={onChangeBurgerIngredients}
-            ingredientsOrder={ingredientsOrder}
+            isNoIngredients = {!ingredientsOrder.length}
             setShowModal={setShowModal}
           />
         </div>

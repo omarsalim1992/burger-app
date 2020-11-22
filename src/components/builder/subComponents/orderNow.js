@@ -2,10 +2,9 @@ import React from 'react';
 import { BurgerIcon } from '../../../assets/images';
 
 export default ({
-    ingredientsOrder,
+    isNoIngredients,
     setShowModal
 }) => {
-    const isNoIngredients = !ingredientsOrder.length;
     return (
         <div className="row order-now justify-content-center">
             <div className="col-7">

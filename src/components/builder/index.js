@@ -11,7 +11,7 @@ import {
 
 export default ({
     onChangeBurgerIngredients,
-    ingredientsOrder,
+    isNoIngredients,
     setShowModal
 }) => {
     const { ingredientPrices, ingredientsType } = Constants;
@@ -46,7 +46,7 @@ export default ({
                 />
             </div>
             <OrderNow
-                ingredientsOrder={ingredientsOrder}
+                isNoIngredients={isNoIngredients}
                 setShowModal={setShowModal}
             />
         </div>
